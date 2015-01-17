@@ -64,7 +64,7 @@ for details."
   "Keywords API. Please see <http://docs.bosonnlp.com/keywords.html> for 
 details."
   ([coll] (single-api :keywords coll))
-  ([coll ^Integer top_k] (single-api :keywords coll {"top_k" top_k})))
+  ([coll top_k] (single-api :keywords coll {"top_k" top_k})))
 
 
 (defn classify
@@ -77,7 +77,7 @@ for details."
   "Semantic words suggestion API. See <http://docs.bosonnlp.com/suggest.html>
 for details."
   ([^String word] (single-api :suggest word))
-  ([^String word ^Integer top_k] (single-api :suggest word {"top_k" top_k})))
+  ([^String word top_k] (single-api :suggest word {"top_k" top_k})))
 
 (defn tag
   "Segmentation and postag API. See <http://docs.bosonnlp.com/tag.html> for
