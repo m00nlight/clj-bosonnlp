@@ -37,7 +37,7 @@ user=> (use '[clj-bosonnlp.core])
 nil  
 ;; initialize with you api-token
 user=> (initialize "<your-api-token>")
-"UlsRo-_A.2645.FPna3bWU4Xg4"
+"<you-api-token>"
 ;; sentiment example 
 user=> (sentiment ["这个世界好复杂", "计算机是科学么"]
 [[0.17128982245610536 0.8287101775438946] \
@@ -73,7 +73,7 @@ clj-bosonnlp.core=> (depparser ["这个世界好复杂", "计算机是科学么"
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 m00nlight
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
