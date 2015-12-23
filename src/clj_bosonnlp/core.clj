@@ -25,7 +25,7 @@
 one of [:sentiment, :ner :depparser, :keywords :classify :suggest :tag]"
   [api-name input & more-args]
   {:pre [(some #(= api-name %) [:sentiment :ner :depparser :keywords
-                                :classify :suggest :tag])]}
+                                :classify :suggest :tag :summary])]}
   (let [res (client/post
              (str endpoint (name api-name) "/" "analysis"
                   (if (not (empty? more-args))
@@ -37,6 +37,7 @@ one of [:sentiment, :ner :depparser, :keywords :classify :suggest :tag]"
     (if (= (:status res) 200)
       (json/read-str (:body res))
       (throw (Exception. (:message res))))))
+
 
 (defn sentiment
   "Sentiment API for sentiment analysis, input is an collection of 
@@ -83,6 +84,28 @@ for details."
   "Segmentation and postag API. See <http://docs.bosonnlp.com/tag.html> for
 details. Coll can be a text list or a string of text."
   [coll] (single-api :tag coll))
+
+(defn summary
+  "Single document summary API. See <http://docs.bosonnlp.com/summary.html> for
+details.
+-- doc : should be a map at least contain \"conetent\" filed, it can also 
+   contain additional \"title\" filed.
+-- p : is either the percentage of the summary or a integer number which is
+   the maximum characters of the summary
+-- strick? : whether to use strick mode for summary, if true, will not exceed
+   the percent or the number of characters, other wise, maybe exceed 
+   the limit a little to maintain the integrity."
+  ([doc] (single-api :summary doc))
+  ([doc p]
+   {:pre [(or (and (>= p 0) (<= p 1))
+              (or (instance? Long p) (instance? Integer p)))] }
+   (single-api :summary (assoc doc "percentage" p) ))
+  ([doc p strick?]
+   {:pre [(or (and (>= p 0) (<= p 1))
+              (or (instance? Long p) (instance? Integer p)))
+          (instance? Boolean strick?)]}
+   (single-api :summary (assoc doc "percentage" p
+                               "not_exceed" (if strick? 1 0)))))
 
 
 (defn multiple-api
