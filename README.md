@@ -1,5 +1,7 @@
 # clj-bosonnlp
 
+[![Clojars Project](http://clojars.org/clj-bosonnlp/latest-version.svg)](http://clojars.org/clj-bosonnlp)
+
 clj-bosonnlp是[Boson NLP](http://bosonnlp.com/)的clojure封装。
 
 Boson NLP提供了中文自然语言处理中，包括：
@@ -18,7 +20,7 @@ Boson NLP提供了中文自然语言处理中，包括：
 使用Leiningin的，在`project.clj`文件中加入:
 
 ```clojure
-[clj-bosonnlp "0.1.1"]
+[clj-bosonnlp "0.1.2"]
 ```
 
 使用maven的，在`pom.xml`中加入:
@@ -26,7 +28,7 @@ Boson NLP提供了中文自然语言处理中，包括：
 <dependency>
   <groupId>clj-bosonnlp</groupId>
   <artifactId>clj-bosonnlp</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
 </dependency>
 ```
 
